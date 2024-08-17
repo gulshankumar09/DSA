@@ -55,4 +55,4 @@ If you have any questions, suggestions, or issues, feel free to reach out:
 
 	•	Name: Gulshan Kumar
 	•	GitHub: gulshankumar09
-	•	Email: [Your Email Here]
+	•	Email: gulshankumar.official2000@gmail.com
