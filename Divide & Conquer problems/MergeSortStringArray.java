@@ -41,7 +41,7 @@ public class MergeSortStringArray {
 
         // Compare elements from both halves and add the smaller element to the temporary array
         while (i <= mid && j <= ei) {
-            if (arr[i] < arr[j]) {
+            if (arr[i].compareTo(arr[j]) < 0) {
                 temp[k] = arr[i];
                 i++;
             } else {
