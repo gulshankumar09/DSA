@@ -1,0 +1,162 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+## Array
+Array declaration and Initialization
+
+#!csharp
+
+// Declaration and Initialization in the same line
+int[] arr = new[] { 1, 2, 3, 4, 5 };
+int[] arr2 = new int[] { 110, 120 };
+string[] arr3 = { "a", "b", "c" };
+
+// Declaring an array with a specific size
+int[] arr4 = new int[3];
+// Copying an array to another array(Initialization)
+Array.Copy(arr, arr4, 3);
+
+Console.WriteLine(string.Join(", ", arr)); // 1, 2, 3, 4, 5
+Console.WriteLine(string.Join(", ", arr2)); // 1, 2, 3, 4, 5
+Console.WriteLine(string.Join(", ", arr3)); // 1, 2, 3, 4, 5
+Console.WriteLine(string.Join(", ", arr4)); // a, b, c
+
+#!markdown
+
+### 2D Array
+
+- int [y - axis, x - axis] 
+- int [row, column]
+
+```csharp
+y-axis (row)  i
+  ^
+  |
+  |  0  1  2  3  4   (x-axis) column  (j)
+  +-----------------------
+0 |  a  b  c  d  e
+1 |  f  g  h  i  j
+2 |  k  l  m  n  o
+3 |  p  q  r  s  t
+4 |  u  v  w  x  y
+```
+In this diagram:
+
+- The y-axis represents the rows.
+- The x-axis represents the columns.
+- Each cell in the 2D array can be accessed using its row and column indices. For example, the element at row 2, column 3 is `n`.
+
+This diagram helps visualize how a 2D array is structured, with rows and columns forming a grid.
+
+#!csharp
+
+// Declaration and Initialization of a 2D array
+int[,] twoDArray = { 
+    { 1, 2, 3 }, 
+    { 4, 5, 6 } 
+};
+
+Console.WriteLine("Example 1 : ");
+Console.Write(twoDArray[0, 0] + " "); // 1
+Console.Write(twoDArray[0, 1] + " "); // 2
+Console.WriteLine(twoDArray[0, 2]+ " "); // 3
+Console.Write(twoDArray[1, 0]+ " "); // 4
+Console.Write(twoDArray[1, 1]+ " "); // 5
+Console.WriteLine(twoDArray[1, 2] +" "); // 6
+
+Console.WriteLine();
+
+// Declaration and Initialization of a 2D array with a specific size
+int [,] twoDArray2 = new int[2,4];
+
+twoDArray2[0, 0] = 1;  // 1
+twoDArray2[0, 1] = 2;  // 2
+twoDArray2[0, 2] = 3;  // 3
+twoDArray2[0, 3] = 4;  // 4
+//twoDArray2[0, 4] = 5; // IndexOutOfRangeException
+twoDArray2[1, 0] = 4;  // 4  
+twoDArray2[1, 1] = 5;  // 5
+twoDArray2[1, 2] = 6;  // 6
+twoDArray2[1, 3] = 7;  // 7
+
+
+Console.WriteLine("Example 2 :");
+
+Console.WriteLine(twoDArray2.Length); // 6    // gets the total number of elements
+Console.WriteLine(twoDArray2.Rank);  // 2    // Rank -> gives number of dimensions
+
+// get the number of elements in the first dimension
+Console.WriteLine("Number of elements in the Y-axis || rows : " + twoDArray2.GetLength(0)); // 2
+// get the number of elements in the second dimension
+Console.WriteLine("Number of elements in the X-axix || columns : "+ twoDArray2.GetLength(1)); // 3
+
+for (int i = 0; i < twoDArray2.GetLength(0); i++)   // rows
+{
+    for (int j = 0; j < twoDArray2.GetLength(1); j++)   // columns
+    {
+        Console.Write(twoDArray2[i, j] + " ");
+    }
+    Console.WriteLine();
+}
+
+#!markdown
+
+### Jagged Array Declaration and Initialization
+
+- int [row] [column]
+- int [Y -axis] [X -axis]
+
+#!csharp
+
+int[][] arrays = new int[][] {
+    new int[] {1, 2},
+    new int[] {4, 5, 6},
+    new int[] {7, 8, 9, 10}
+};
+
+
+Console.WriteLine("Number of rows: "+ arrays.GetLength(0)); // 3
+Console.WriteLine(arrays[0].GetLength(0)); // 2
+Console.WriteLine(arrays[1].GetLength(0)); // 3
+Console.WriteLine(arrays[2].GetLength(0)); // 4
+
+#!csharp
+
+```polyglot-notebook
+// Remove even numbers from an array
+
+int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+// Create a new list to store the odd numbers
+List<int> oddNumbers = new List<int>();
+
+// Iterate through the array
+for (int i = 0; i < numbers.Length; i++)
+{
+    // Check if the number is odd
+    if (numbers[i] % 2 != 0)
+    {
+        // Add the odd number to the list
+        oddNumbers.Add(numbers[i]);
+    }
+}
+
+// Convert the list back to an array
+int[] oddNumbersArray = oddNumbers.ToArray();
+
+Console.WriteLine(string.Join(", ", oddNumbersArray)); // 1, 3, 5, 7, 9
+```
+In the above code snippet, we have an array of numbers. We iterate through the array and check if each number is odd. If it is odd, we add it to a new list called `oddNumbers`. Finally, we convert the list back to an array and print the odd numbers.
+
+#!csharp
+
+int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+int[] oddArray = arr.Where(x => x % 2 != 0).ToArray();
+Console.WriteLine(string.Join(", ", oddArray)); // 1, 3, 5, 7, 9
+
+Array.Reverse<int>(arr);
+Console.WriteLine(string.Join(", ", arr)); // 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
